@@ -45,7 +45,7 @@ if (keys[0] === "'") {
 if (keys[-1] === "'") {
     keys = keys.slice(0, -1);
 }
-const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
+const serviceAccount = JSON.parse(keys);
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     storageBucket: process.env.STORAGE_BUCKET,
