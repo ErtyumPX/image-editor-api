@@ -28,8 +28,13 @@ export class AppModule {}
 
 import * as admin from 'firebase-admin';
 
-console.log("TEST in env: ", process.env.TEST);
-
+let keys = process.env.SERVICE_ACCOUNT_KEY as string;
+if (keys[0] === "'"){
+    keys = keys.slice(1, -1);
+}
+if (keys[-1] === "'"){
+    keys = keys.slice(0, -1);
+}
 const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY as string);
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),

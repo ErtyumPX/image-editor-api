@@ -38,7 +38,13 @@ exports.AppModule = AppModule = __decorate([
     })
 ], AppModule);
 const admin = require("firebase-admin");
-console.log("TEST in env: ", process.env.TEST);
+let keys = process.env.SERVICE_ACCOUNT_KEY;
+if (keys[0] === "'") {
+    keys = keys.slice(1, -1);
+}
+if (keys[-1] === "'") {
+    keys = keys.slice(0, -1);
+}
 const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
