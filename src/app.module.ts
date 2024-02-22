@@ -30,8 +30,14 @@ export class AppModule {}
 
 import * as admin from 'firebase-admin';
 
-const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY as string);
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    storageBucket: process.env.STORAGE_BUCKET,
-});
+const accountKeys = process.env.SERVICE_ACCOUNT_KEY;
+if (!accountKeys) {
+    console.log('No service account key found');
+}
+else {
+    const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY as string);
+    admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount),
+        storageBucket: process.env.STORAGE_BUCKET,
+    });
+}
