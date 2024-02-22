@@ -28,7 +28,7 @@ export class AppModule {}
 
 import * as admin from 'firebase-admin';
 
-console.log(process.env.TEST);
+console.log("TEST in env: ", process.env.TEST);
 
 const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY as string);
 admin.initializeApp({
