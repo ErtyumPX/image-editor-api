@@ -10,8 +10,6 @@ import { IdentifierService } from './identifier/identifier.service';
 import { FirebaseService } from './firebase/firebase.service';
 import { StorageController } from './storage/storage.controller';
 
-
-
 @Module({
     imports: [ConfigModule.forRoot()],
     controllers: [
@@ -30,14 +28,11 @@ export class AppModule {}
 
 import * as admin from 'firebase-admin';
 
-const accountKeys = process.env.SERVICE_ACCOUNT_KEY;
-if (!accountKeys) {
-    console.log('No service account key found');
-}
-else {
-    const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY as string);
-    admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount),
-        storageBucket: process.env.STORAGE_BUCKET,
-    });
-}
+console.log(process.env.TEST);
+
+const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY as string);
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    storageBucket: process.env.STORAGE_BUCKET,
+});
+

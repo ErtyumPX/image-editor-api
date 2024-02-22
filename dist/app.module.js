@@ -38,15 +38,10 @@ exports.AppModule = AppModule = __decorate([
     })
 ], AppModule);
 const admin = require("firebase-admin");
-const accountKeys = process.env.SERVICE_ACCOUNT_KEY;
-if (!accountKeys) {
-    console.log('No service account key found');
-}
-else {
-    const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
-    admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount),
-        storageBucket: process.env.STORAGE_BUCKET,
-    });
-}
+console.log(process.env.TEST);
+const serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    storageBucket: process.env.STORAGE_BUCKET,
+});
 //# sourceMappingURL=app.module.js.map
